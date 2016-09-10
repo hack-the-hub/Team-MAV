@@ -1,5 +1,7 @@
 package industries.mav.localbuddy;
 
+import android.util.Log;
+
 public class Counsellor
 {
     private String MemberFirstName;
@@ -27,7 +29,9 @@ public class Counsellor
     public void setConstituencyName(String ConstituencyName) { this.ConstituencyName = ConstituencyName; }
 
 
-    public String getMemberFullName() { return (this.MemberFirstName + " " + this.MemberLastName); }
+    public String getMemberFirstName() { return this.MemberFirstName; }
+    public String getMemberLastName() { return this.MemberLastName; }
+    public String getMemberFullName() { return this.getMemberFirstName() + " " + this.getMemberLastName(); }
     public String getMemberImageUrl() { return this.MemberImageUrl; }
     public String getPartyAbbreviation() { return this.PartyAbbreviation; }
     public String getMemberTitle() { return this.MemberTitle; }

@@ -13,30 +13,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.Map;
-
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity
+{
     private static final String TAG = "MainActivity";
-    private final TypeReference<Map<String, String>> type = new TypeReference<Map<String, String>>() {
-    };
-
-
-    //Views
-    private RecyclerView mRecyclerView;
-
-    //Firebase
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference myRef1 = database.getReference("counsellors");
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,29 +29,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-
-        myRef1.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
-                Log.d(TAG, "Datasnapshot value: " + dataSnapshot.getValue());
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, "Failed to read value --- " + databaseError);
-            }
-        });
-
-        FirebaseRecyclerAdapter adapter =
-                new FirebaseRecyclerAdapter<Counsellor, TestViewHolder>(
+        FirebaseRecyclerAdapter adapter =  new FirebaseRecyclerAdapter<Counsellor, TestViewHolder>(
                         Counsellor.class,
                         R.layout.card_counsellor,
                         TestViewHolder.class,
-                        myRef1
+                        LocalBuddyApplication.getDbManager().dataBase
                 ) {
 
                     @Override
