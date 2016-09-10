@@ -9,10 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 
-import com.google.firebase.database.FirebaseDatabase;
-import com.twitter.sdk.android.tweetui.UserTimeline;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -36,8 +33,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         Fabric.with(this, LocalBuddyApplication.getTweetMan().getKits());
-
-        this.getTweetManStuff();
 
         mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
         mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -96,11 +91,5 @@ public class MainActivity extends AppCompatActivity
             return fragments[position];
         }
 
-    }
-
-    public void getTweetManStuff()
-    {
-        UserTimeline userTimeline = new UserTimeline.Builder().screenName("fabric").build();
-        Log.i("VINCE", "User timeline = " + userTimeline);
     }
 }
