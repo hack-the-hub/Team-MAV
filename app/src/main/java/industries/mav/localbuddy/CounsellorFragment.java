@@ -26,15 +26,10 @@ import java.util.List;
 /**
  * Created by Andrew on 9/10/16.
  */
-public class CounsellorFragment extends Fragment {
-
+public class CounsellorFragment extends Fragment
+{
     private static final String TAG = "CounsellorFragment";
-
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference myRef1 = database.getReference("counsellors");
-
     private RecyclerView mRecyclerView;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,30 +49,17 @@ public class CounsellorFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-
-        myRef1.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
-                Log.d(TAG, "Datasnapshot value: " + dataSnapshot.getValue());
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, "Failed to read value --- " + databaseError);
-            }
-        });
-
         FirebaseRecyclerAdapter adapter =
                 new FirebaseRecyclerAdapter<Counsellor, TestViewHolder>(
                         Counsellor.class,
                         R.layout.card_counsellor,
                         TestViewHolder.class,
-                        myRef1
+                        LocalBuddyApplication.getDbManager().dataBase
                 ) {
 
                     @Override
                     protected void populateViewHolder(final TestViewHolder viewHolder, Counsellor model, int position) {
-                        Log.d(TAG, "AAC --> Populating viewholder");
+                        Log.d(TAG, "MAV --> Populating viewholder");
                         viewHolder.setName(model.getMemberFullName());
                         viewHolder.setParty(model.getPartyAbbreviation());
                         viewHolder.setMotto(model.getConstituencyName());
@@ -87,23 +69,21 @@ public class CounsellorFragment extends Fragment {
                             @Override
                             protected void onPostExecute(Drawable drawable) {
                                 icon[0] = drawable;
-                                Log.d(TAG, "AAC --> icon:" + icon[0]);
+                                Log.d(TAG, "MAV ANDREW ITS MAV --> icon:" + icon[0]);
                                 viewHolder.setImageView(icon[0]);
                             }
                         };
                         getImage.execute(model.getMemberImgUrl());
                     }
 
-                     class GetImage extends AsyncTask<String, Void, Drawable> {
-
+                     class GetImage extends AsyncTask<String, Void, Drawable>
+                     {
                         @Override
                         protected Drawable doInBackground(String... strings) {
-                            String url = new String(strings[0]);
-                            Log.d(TAG, "AAC --> url: " + url);
+                            Log.d(TAG, "MAV ANDREW ITS MAV --> url: " + strings[0]);
                             try {
-                                InputStream is = (InputStream) new URL(url).getContent();
-                                Drawable d = Drawable.createFromStream(is, "src name");
-                                return d;
+                                InputStream is = (InputStream) new URL(strings[0]).getContent();
+                                return Drawable.createFromStream(is, "src name");
                             } catch (Exception e) {
                                 e.printStackTrace();
                                 return null;
@@ -119,7 +99,6 @@ public class CounsellorFragment extends Fragment {
     public void onPause() {
         super.onPause();
     }
-
 
     public static class TestViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -170,6 +149,4 @@ public class CounsellorFragment extends Fragment {
 //        }
 
     }
-
-
 }
