@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Firebase
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference myRef1 = database.getReference("Counsellors");
+    private DatabaseReference myRef1 = database.getReference("counsellors");
 
 
     @Override
@@ -66,40 +66,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         FirebaseRecyclerAdapter adapter =
-                new FirebaseRecyclerAdapter<counsellor, TestViewHolder>(
-                        counsellor.class,
+                new FirebaseRecyclerAdapter<Counsellor, TestViewHolder>(
+                        Counsellor.class,
                         R.layout.card_counsellor,
                         TestViewHolder.class,
                         myRef1
                 ) {
 
                     @Override
-                    protected void populateViewHolder(TestViewHolder viewHolder, counsellor model, int position) {
+                    protected void populateViewHolder(TestViewHolder viewHolder, Counsellor model, int position) {
                         Log.d(TAG, "AAC --> Populating viewholder");
-                        String name = model.getName();
-                        Drawable profile;
-                        if (name.contains("Andrew")) {
-                            profile = getResources().getDrawable(R.drawable.andrew);
-                            Bitmap b = ((BitmapDrawable)profile).getBitmap();
-                            Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 100, 100, false);
-                            profile = new BitmapDrawable(getResources(), bitmapResized);
-                        } else if (name.contains("Arlene")) {
-                            profile = getResources().getDrawable(R.drawable.arlene);
-                        } else if (name.contains("Gerry")) {
-                            profile = getResources().getDrawable(R.drawable.gerry);
-                        } else if (name.contains("Marc")) {
-                            profile = getResources().getDrawable(R.drawable.marc);
-                        } else if (name.contains("Vince")) {
-                            profile = getResources().getDrawable(R.drawable.vince);
-                        } else if (name.contains("Jimmy")) {
-                            profile = getResources().getDrawable(R.drawable.jimmy);
-                        } else {
-                            profile = null;
-                        }
-                        viewHolder.setImageView(profile);
-                        viewHolder.setName(model.getName());
-                        viewHolder.setParty(model.getParty());
-                        viewHolder.setMotto(model.getMotto());
+                        viewHolder.setName(model.getMemberName());
+                        viewHolder.setParty(model.getPartyAbbreviation());
+                        viewHolder.setMotto(model.getConstituencyName());
                     }
                 };
 
