@@ -2,18 +2,22 @@ package industries.mav.localbuddy;
 
 import android.util.Log;
 
-public class Counsellor
-{
+import java.io.Serializable;
+
+public class Counsellor implements Serializable {
     private String MemberFirstName;
     private String MemberLastName;
     private String MemberImgUrl;
     private String PartyAbbreviation;
     private String MemberTitle;
     private String ConstituencyName;
+    private String PartyName;
 
     public Counsellor() {}
 
-    public Counsellor(String MemberFirstName, String MemberLastName, String MemberImgUrl, String PartyAbbreviation, String MemberTitle, String ConstituencyName)
+    public Counsellor(String MemberFirstName, String MemberLastName, String MemberImgUrl,
+                      String PartyAbbreviation, String MemberTitle, String ConstituencyName,
+                      String PartyName)
     {
         this.MemberFirstName = MemberFirstName;
         this.MemberLastName = MemberLastName;
@@ -21,6 +25,7 @@ public class Counsellor
         this.PartyAbbreviation = PartyAbbreviation;
         this.MemberTitle = MemberTitle;
         this.ConstituencyName = ConstituencyName;
+        this.PartyName = PartyName;
     }
 
     public void setMemberImageUrl(String MemberImageUrl) { this.MemberImgUrl = MemberImageUrl; }
@@ -36,4 +41,5 @@ public class Counsellor
     public String getPartyAbbreviation() { return this.PartyAbbreviation.toUpperCase(); }
     public String getMemberTitle() { return this.MemberTitle; }
     public String getConstituencyName() { return this.ConstituencyName; }
+    public String getPartyName() { return this.PartyName; }
 }

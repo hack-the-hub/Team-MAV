@@ -16,12 +16,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="UsersTimelineActivity">
-        </activity>
+            android:name=".InfoActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name="UsersTimelineActivity"></activity>
+
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="ebcf72a6d63b86a01cbfdea0e632c30ee396bf11"
-            />
+            android:value="ebcf72a6d63b86a01cbfdea0e632c30ee396bf11" />
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
