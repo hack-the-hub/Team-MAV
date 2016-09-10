@@ -18,6 +18,7 @@ public class UsersTimelineActivity extends ListActivity
         setContentView(R.layout.twitter_activity);
 
         final UserTimeline userTimeline = new UserTimeline.Builder().screenName("_andrewaac").build();
+        LocalBuddyApplication.getTweetMan().loadJSONTweets();
         final TweetTimelineListAdapter adapter = new TweetTimelineListAdapter.Builder(this).setTimeline(userTimeline).build();
         setListAdapter(adapter);
     }

@@ -28,6 +28,8 @@ public class Counsellor implements Serializable {
         this.MemberTitle = MemberTitle;
         this.ConstituencyName = ConstituencyName;
         this.PartyName = PartyName;
+        String test = twitterHandle();
+        Log.i("Counsellor", test);
         this.TwitterHandle = twitterHandle();
     }
 
