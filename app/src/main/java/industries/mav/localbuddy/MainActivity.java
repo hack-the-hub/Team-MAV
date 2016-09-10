@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 
+import io.fabric.sdk.android.Fabric;
+
 public class MainActivity extends AppCompatActivity
 {
     private static final String TAG = "MainActivity";
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Fabric.with(this, LocalBuddyApplication.getTweetMan().getKits());
     }
 
     @Override
