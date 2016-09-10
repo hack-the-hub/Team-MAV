@@ -3,33 +3,31 @@ package industries.mav.localbuddy;
 public class Counsellor
 {
 
-    public String MemberName;
-    public String MemberImageUrl;
-    public String PartyAbbreviation;
-    public String MemberTitle;
-    public String ConstituencyName;
-    public String Address;
+    private String MemberName;
+    private String MemberImageUrl;
+    private String PartyAbbreviation;
+    private String MemberTitle;
+    private String ConstituencyName;
 
-    public Counsellor(String MemberName, String MemberImageUrl, String party, String title, String constituency)
+    public Counsellor(String MemberName, String MemberImageUrl, String PartyAbbreviation, String MemberTitle, String ConstituencyName)
     {
         this.MemberName = MemberName;
         this.MemberImageUrl = MemberImageUrl;
-        this.PartyAbbreviation = party;
-        this.MemberTitle = title;
-        this.ConstituencyName = constituency;
+        this.PartyAbbreviation = PartyAbbreviation;
+        this.MemberTitle = MemberTitle;
+        this.ConstituencyName = ConstituencyName;
     }
 
-    public void setMemberName(String name) { this.MemberName = name; }
-    public void setMemberImageUrl(String imageURL) { this.MemberImageUrl = imageURL; }
-    public void setPartyAbbreviation(String party) { this.PartyAbbreviation = party; }
-    public void setMemberTitle(String title) { this.MemberTitle = title; }
-    public void setConstituencyName(String constituency) { this.ConstituencyName = constituency; }
-    public void setAddress (String address) { this.Address = address; }
+    public void setMemberName(String MemberName) { this.MemberName = MemberName; }
+    public void setMemberImageUrl(String MemberImageUrl) { this.MemberImageUrl = MemberImageUrl; }
+    public void setPartyAbbreviation(String PartyAbbreviation) { this.PartyAbbreviation = PartyAbbreviation; }
+    public void setMemberTitle(String MemberTitle) { this.MemberTitle = MemberTitle; }
+    public void setConstituencyName(String ConstituencyName) { this.ConstituencyName = ConstituencyName; }
+
 
     public String getMemberName() { return this.MemberName; }
     public String getMemberImageUrl() { return this.MemberImageUrl; }
     public String getPartyAbbreviation() { return this.PartyAbbreviation; }
     public String getMemberTitle() { return this.MemberTitle; }
     public String getConstituencyName() { return this.ConstituencyName; }
-    public String getAddress() { return this.Address; }
 }
