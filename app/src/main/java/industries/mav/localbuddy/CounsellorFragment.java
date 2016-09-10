@@ -47,6 +47,12 @@ public class CounsellorFragment extends Fragment
         return view;
     }
 
+    private String twitterHandle(String x, String y)
+    {
+        HandlerFinder hFinder = new HandlerFinder();
+        return hFinder.FindHandle(getContext(), x, y);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -65,6 +71,8 @@ public class CounsellorFragment extends Fragment
                         viewHolder.setName(model.getMemberFullName());
                         viewHolder.setParty(model.getPartyAbbreviation());
                         viewHolder.setMotto(model.getConstituencyName());
+                        
+                        model.setHandle(twitterHandle(model.getMemberLastName(), model.getMemberFirstName()));
 
                         final Drawable[] icon = {null};
                         GetImage getImage = new GetImage(){
@@ -141,6 +149,8 @@ public class CounsellorFragment extends Fragment
 
         @Override
         public void onClick(View view) {
+
+            Log.d(TAG, "onClick: ");
             Intent viewInfo = new Intent(view.getContext(), UsersTimelineActivity.class);
             view.getContext().startActivity(viewInfo);
 //            viewInfo.putExtra(InfoActivity.EXTRA_NAME, mNameString)

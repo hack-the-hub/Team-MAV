@@ -1,5 +1,9 @@
 package industries.mav.localbuddy;
 
+import android.content.Context;
+import android.content.res.AssetManager;
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,10 +15,11 @@ import java.io.IOException;
  */
 public class HandlerFinder {
 
-    private static final String m_csv = "..\\..\\..\\..\\..\\..\\build\\generated\\assets\\elected-candidates";
+    private Context context;
+    private static final String TAG = "WTF";
+    private String m_csv = "elected-candidates.csv";
     private static final String comma = ",";
     private String lineIn = "";
-
 
     public HandlerFinder()
     {
@@ -27,14 +32,15 @@ public class HandlerFinder {
      * @param lastName  MLA last name
      * @return MLA's Handle
      */
-    public String FindHandle(String firstName, String lastName)
+    public String FindHandle(Context context, String firstName, String lastName)
     {
+        this.context = context;
         String handle = "";
         BufferedReader br = null;
-
+        AssetManager assetManager = context.getAssets();
         try
         {
-            br = new BufferedReader(new FileReader(m_csv));
+            br = new BufferedReader(new FileReader(String.valueOf(assetManager.open("elected-candidates.csv"))));
             while ((lineIn = br.readLine()) != null)
             {
                 // use the comma sperator
@@ -50,10 +56,13 @@ public class HandlerFinder {
         }
         catch (FileNotFoundException e)
         {
+            Log.d(TAG, "FindHandle: FileNotFoundException");
             e.printStackTrace();
         }
         catch (IOException e)
         {
+            Log.d(TAG, "FindHandle: IOException");
+
             e.printStackTrace();
         }
         finally

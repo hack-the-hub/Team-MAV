@@ -24,13 +24,13 @@ public class Counsellor
         this.PartyAbbreviation = PartyAbbreviation;
         this.MemberTitle = MemberTitle;
         this.ConstituencyName = ConstituencyName;
-        this.TwitterHandle = twitterHandle();
     }
 
     public void setMemberImageUrl(String MemberImageUrl) { this.MemberImgUrl = MemberImageUrl; }
     public void setPartyAbbreviation(String PartyAbbreviation) { this.PartyAbbreviation = PartyAbbreviation; }
     public void setMemberTitle(String MemberTitle) { this.MemberTitle = MemberTitle; }
     public void setConstituencyName(String ConstituencyName) { this.ConstituencyName = ConstituencyName; }
+    public void setHandle(String handle) { this.TwitterHandle = handle; }
 
 
     public String getMemberFirstName() { return this.MemberFirstName; }
@@ -42,9 +42,5 @@ public class Counsellor
     public String getConstituencyName() { return this.ConstituencyName; }
     public String getTwitterHandle() { return this.TwitterHandle; }
 
-    private String twitterHandle()
-    {
-        hFinder = new HandlerFinder();
-        return hFinder.FindHandle(this.MemberLastName, this.MemberFirstName);
-    }
+
 }
