@@ -148,7 +148,7 @@ public class CounsellorFragment extends Fragment {
 //            Intent viewInfo = new Intent(view.getContext(), InfoActivity.class)
 //                    .putExtra("COUNSELLOR", (Serializable) counsellor);
 //            view.getContext().startActivity(viewInfo);
-            LocalBuddyApplication.getTweetMan().loadJSONTweets();
+            LocalBuddyApplication.getTweetMan().testTwitterAPI();
         }
 
     }
