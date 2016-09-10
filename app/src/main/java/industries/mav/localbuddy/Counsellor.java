@@ -2,12 +2,13 @@ package industries.mav.localbuddy;
 
 public class Counsellor
 {
-
     private String MemberName;
     private String MemberImageUrl;
     private String PartyAbbreviation;
     private String MemberTitle;
     private String ConstituencyName;
+
+    public Counsellor() {}
 
     public Counsellor(String MemberName, String MemberImageUrl, String PartyAbbreviation, String MemberTitle, String ConstituencyName)
     {
