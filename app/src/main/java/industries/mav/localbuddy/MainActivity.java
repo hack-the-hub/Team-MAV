@@ -21,9 +21,11 @@ public class MainActivity extends AppCompatActivity
     private TabLayout mTabLayout;
     private ViewPager mPager;
 
-    private int[] imageResIds = new int[]{android.support.design.R.drawable.abc_ic_go_search_api_material,
+    private int[] imageResIds = new int[]{
             android.support.design.R.drawable.abc_ic_go_search_api_material,
-            android.support.design.R.drawable.abc_ic_go_search_api_material};
+            android.support.design.R.drawable.abc_ic_go_search_api_material,
+            android.support.design.R.drawable.abc_ic_go_search_api_material
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
