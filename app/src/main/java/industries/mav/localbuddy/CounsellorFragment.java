@@ -1,6 +1,7 @@
 package industries.mav.localbuddy;
 
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -73,11 +76,39 @@ public class CounsellorFragment extends Fragment {
                 ) {
 
                     @Override
-                    protected void populateViewHolder(TestViewHolder viewHolder, Counsellor model, int position) {
+                    protected void populateViewHolder(final TestViewHolder viewHolder, Counsellor model, int position) {
                         Log.d(TAG, "AAC --> Populating viewholder");
-                        viewHolder.setName(model.getMemberName());
+                        viewHolder.setName(model.getMemberFullName());
                         viewHolder.setParty(model.getPartyAbbreviation());
                         viewHolder.setMotto(model.getConstituencyName());
+
+                        final Drawable[] icon = {null};
+                        GetImage getImage = new GetImage(){
+                            @Override
+                            protected void onPostExecute(Drawable drawable) {
+                                icon[0] = drawable;
+                                Log.d(TAG, "AAC --> icon:" + icon[0]);
+                                viewHolder.setImageView(icon[0]);
+                            }
+                        };
+                        getImage.execute(model.getMemberImgUrl());
+                    }
+
+                     class GetImage extends AsyncTask<String, Void, Drawable> {
+
+                        @Override
+                        protected Drawable doInBackground(String... strings) {
+                            String url = new String(strings[0]);
+                            Log.d(TAG, "AAC --> url: " + url);
+                            try {
+                                InputStream is = (InputStream) new URL(url).getContent();
+                                Drawable d = Drawable.createFromStream(is, "src name");
+                                return d;
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                return null;
+                            }
+                        }
                     }
                 };
 
@@ -137,6 +168,8 @@ public class CounsellorFragment extends Fragment {
 //                    .putExtra(InfoActivity.EXTRA_MOTTO, mMottoString);
 //            view.getContext().startActivity(viewInfo);
 //        }
+
     }
+
 
 }
