@@ -13,19 +13,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-
-import java.util.ArrayList;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity
 {
     private static final String TAG = "MainActivity";
-    private final TypeReference<Map<String, String>> type = new TypeReference<Map<String, String>>() {};
-
-    //Views
-    private RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +29,7 @@ public class MainActivity extends AppCompatActivity
     protected void onStart() {
         super.onStart();
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 

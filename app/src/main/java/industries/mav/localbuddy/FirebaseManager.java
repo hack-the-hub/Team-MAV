@@ -6,8 +6,6 @@ package industries.mav.localbuddy;
 
 import android.util.Log;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
