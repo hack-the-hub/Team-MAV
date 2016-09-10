@@ -15,7 +15,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterApiClient;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.models.Card;
+import com.twitter.sdk.android.core.models.Tweet;
+import com.twitter.sdk.android.core.services.StatusesService;
 import com.twitter.sdk.android.tweetcomposer.TweetComposer;
 
 import org.w3c.dom.Text;
@@ -30,7 +38,7 @@ public class InfoActivity extends Activity {
     private static final String TAG = "InfoActivity";
 
     private de.hdodenhof.circleimageview.CircleImageView profilePic;
-    private TextView name, party;
+    private TextView name, party, title, consituency;
     private CardView button;
 
     private Counsellor counsellor;
@@ -53,9 +61,13 @@ public class InfoActivity extends Activity {
         party = (TextView) findViewById(R.id.pName);
         profilePic = (de.hdodenhof.circleimageview.CircleImageView) findViewById(R.id.profilePic);
         button = (CardView) findViewById(R.id.contactButton);
+        title = (TextView) findViewById(R.id.ptitle);
+        consituency = (TextView) findViewById(R.id.constituency);
 
         name.setText(counsellor.getMemberFullName());
         party.setText(counsellor.getPartyName());
+        title.setText(counsellor.getMemberTitle());
+        consituency.setText(counsellor.getConstituencyName());
 
         final Drawable[] icon = {null};
         GetImage getImage = new GetImage() {
@@ -79,5 +91,9 @@ public class InfoActivity extends Activity {
         });
 
 
+
+
     }
+
+
 }

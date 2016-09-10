@@ -106,8 +106,7 @@
 
         <TextView
             android:layout_marginLeft="5dp"
-
-            android:id="@+id/title"
+            android:id="@+id/ptitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
@@ -119,7 +118,6 @@
 
         <TextView
             android:layout_marginLeft="5dp"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
@@ -127,7 +125,7 @@
             android:padding="5dp"
             android:textColor="#5b5b5b"
             android:textSize="12sp"
-            tools:text="Constituency" />
+            android:text="Constituency" />
 
         <TextView
             android:layout_marginLeft="5dp"
@@ -142,9 +140,27 @@
             android:textSize="12sp"
             tools:text="North Down" />
         
-        <!--<LinearLayout-->
-            <!--android:layout_width="ma"-->
-            <!--android:layout_height=""></LinearLayout>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/fbicon"/>
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/twitticon"/>
+
+            <!--<ImageView-->
+                <!--android:layout_width="60dp"-->
+                <!--android:layout_height="60dp"-->
+                <!--android:src="@drawable/fbicon"/>-->
+
+        </LinearLayout>
 
 
     </android.support.v7.widget.LinearLayoutCompat>
