@@ -22,21 +22,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.Map;
-
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity
+{
     private static final String TAG = "MainActivity";
-    private final TypeReference<Map<String, String>> type = new TypeReference<Map<String, String>>() {
-    };
 
 
     //Views
@@ -50,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
     //Firebase
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     @Override

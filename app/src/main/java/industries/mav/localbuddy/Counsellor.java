@@ -1,8 +1,11 @@
 package industries.mav.localbuddy;
 
+import android.util.Log;
+
 public class Counsellor
 {
-    private String MemberName;
+    private String MemberFirstName;
+    private String MemberLastName;
     private String MemberImageUrl;
     private String PartyAbbreviation;
     private String MemberTitle;
@@ -10,23 +13,25 @@ public class Counsellor
 
     public Counsellor() {}
 
-    public Counsellor(String MemberName, String MemberImageUrl, String PartyAbbreviation, String MemberTitle, String ConstituencyName)
+    public Counsellor(String MemberFirstName, String MemberLastName, String MemberImageUrl, String PartyAbbreviation, String MemberTitle, String ConstituencyName)
     {
-        this.MemberName = MemberName;
+        this.MemberFirstName = MemberFirstName;
+        this.MemberLastName = MemberLastName;
         this.MemberImageUrl = MemberImageUrl;
         this.PartyAbbreviation = PartyAbbreviation;
         this.MemberTitle = MemberTitle;
         this.ConstituencyName = ConstituencyName;
     }
 
-    public void setMemberName(String MemberName) { this.MemberName = MemberName; }
     public void setMemberImageUrl(String MemberImageUrl) { this.MemberImageUrl = MemberImageUrl; }
     public void setPartyAbbreviation(String PartyAbbreviation) { this.PartyAbbreviation = PartyAbbreviation; }
     public void setMemberTitle(String MemberTitle) { this.MemberTitle = MemberTitle; }
     public void setConstituencyName(String ConstituencyName) { this.ConstituencyName = ConstituencyName; }
 
 
-    public String getMemberName() { return this.MemberName; }
+    public String getMemberFirstName() { return this.MemberFirstName; }
+    public String getMemberLastName() { return this.MemberLastName; }
+    public String getMemberFullName() { return this.getMemberFirstName() + " " + this.getMemberLastName(); }
     public String getMemberImageUrl() { return this.MemberImageUrl; }
     public String getPartyAbbreviation() { return this.PartyAbbreviation; }
     public String getMemberTitle() { return this.MemberTitle; }
