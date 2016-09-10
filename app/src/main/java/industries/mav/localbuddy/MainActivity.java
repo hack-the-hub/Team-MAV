@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity
 
     protected static class MainAdapter extends FragmentPagerAdapter
     {
-        private Fragment[] fragments = {new CounsellorFragment(), new CounsellorFragment(), new CounsellorFragment()};
+        private Fragment[] fragments = {new TwitterFeedFragment(), new CounsellorFragment(), new CounsellorFragment()};
         protected Context context;
 
         public MainAdapter(FragmentManager fm, Context context) {
