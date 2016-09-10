@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="5dp">
+    android:layout_height="wrap_content">
 
 
     <android.support.v7.widget.CardView
@@ -37,9 +36,9 @@
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp"
-                    android:fontFamily="sans-serif-normal"
+                    android:textColor="#999999"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-bold"
                     tools:text="John Smith" />
 
 
@@ -47,9 +46,9 @@
                     android:id="@+id/party"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
+                    android:textColor="#F49598"
                     android:fontFamily="sans-serif-light"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     tools:text="Example Party" />
 
 
@@ -58,8 +57,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp"
+                    android:textColor="#999999"
+                    android:textSize="16sp"
 
                     tools:text="We will solve everything!" />
 
