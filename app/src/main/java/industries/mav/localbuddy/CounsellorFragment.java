@@ -145,9 +145,10 @@ public class CounsellorFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            Intent viewInfo = new Intent(view.getContext(), InfoActivity.class)
-                    .putExtra("COUNSELLOR", (Serializable) counsellor);
-            view.getContext().startActivity(viewInfo);
+//            Intent viewInfo = new Intent(view.getContext(), InfoActivity.class)
+//                    .putExtra("COUNSELLOR", (Serializable) counsellor);
+//            view.getContext().startActivity(viewInfo);
+            LocalBuddyApplication.getTweetMan().loadJSONTweets();
         }
 
     }

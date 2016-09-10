@@ -47,7 +47,7 @@ public class TwitterManager
     }
 
     public void loadJSONTweets() {
-
+        Log.d("Vince", "loadTweets");
         RetrieveTweets retrieveTweets = new RetrieveTweets(){
             @Override
             protected void onPostExecute(ArrayList<JSONObject> jsonObjects) {
@@ -69,9 +69,11 @@ public class TwitterManager
             try
             {
                 HttpClient hc = new DefaultHttpClient();
-                HttpGet get = new HttpGet("https://api.twitter.com/1.1/search/tweets.json?q=%40twitterapi");
+                HttpGet get = new HttpGet("https://api.twitter.com/1.1/statuses/user_timeline.json");
                 HttpResponse rp = hc.execute(get);
+
                 Log.i("doInBackground", "HttpRespone = " + rp);
+                Log.i("doInBackground", "Response status code -->" + (rp.getStatusLine().getStatusCode()));
 
                 if(rp.getStatusLine().getStatusCode() == HttpStatus.SC_OK)
                 {
