@@ -1,15 +1,24 @@
 package industries.mav.localbuddy;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,106 +40,88 @@ public class MainActivity extends AppCompatActivity {
 
 
     //Views
-    private RecyclerView mRecyclerView;
+    private Toolbar mToolbar;
+    private TabLayout mTabLayout;
+    private ViewPager mPager;
+
+    private int[] imageResIds = new int[]{android.support.design.R.drawable.abc_ic_go_search_api_material,
+            android.support.design.R.drawable.abc_ic_go_search_api_material,
+            android.support.design.R.drawable.abc_ic_go_search_api_material};
 
     //Firebase
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference myRef1 = database.getReference("counsellors");
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setSupportActionBar(mToolbar);
+
+        mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
+
+        mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                mPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+//        mRecyclerView.setHasFixedSize(true);
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        myRef1.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
-                Log.d(TAG, "Datasnapshot value: " + dataSnapshot.getValue());
-            }
+        mPager = (ViewPager) findViewById(R.id.pager);
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, "Failed to read value --- " + databaseError);
-            }
-        });
+        MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager(), this);
+        mainAdapter = new MainAdapter(getSupportFragmentManager(), getApplicationContext());
+        mPager.setAdapter(mainAdapter);
 
-        FirebaseRecyclerAdapter adapter =
-                new FirebaseRecyclerAdapter<Counsellor, TestViewHolder>(
-                        Counsellor.class,
-                        R.layout.card_counsellor,
-                        TestViewHolder.class,
-                        myRef1
-                ) {
+        mTabLayout.setupWithViewPager(mPager);
 
-                    @Override
-                    protected void populateViewHolder(TestViewHolder viewHolder, Counsellor model, int position) {
-                        Log.d(TAG, "AAC --> Populating viewholder");
-                        viewHolder.setName(model.getMemberName());
-                        viewHolder.setParty(model.getPartyAbbreviation());
-                        viewHolder.setMotto(model.getConstituencyName());
-                    }
-                };
+        for (int i = 0; i < mTabLayout.getTabCount(); i++) {
+            TabLayout.Tab tab = mTabLayout.getTabAt(i);
+            tab.setIcon(imageResIds[i]);
+        }
 
-        mRecyclerView.setAdapter(adapter);
     }
 
-    public static class TestViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    protected static class MainAdapter extends FragmentPagerAdapter {
+        private Fragment[] fragments = {new CounsellorFragment(), new CounsellorFragment(), new CounsellorFragment()};
 
-        private ImageView mImageView;
-        private TextView mName, mParty, mMotto;
-        private String mNameString, mPartyString, mMottoString;
+        protected Context context;
 
-        public TestViewHolder(View itemView) {
-            super(itemView);
-            mImageView = (ImageView) itemView.findViewById(R.id.picture);
-            mName = (TextView) itemView.findViewById(R.id.name);
-            mParty = (TextView) itemView.findViewById(R.id.party);
-            mMotto = (TextView) itemView.findViewById(R.id.motto);
-            itemView.setOnClickListener(this);
-        }
-
-        public void setImageView(Drawable drawable) {
-            mImageView.setImageDrawable(drawable);
-        }
-
-        public void setName(String name) {
-            mNameString = name;
-            mName.setText(name);
-        }
-
-        public void setParty(String party) {
-            mPartyString = party;
-            mParty.setText(party);
-        }
-
-        public void setMotto(String motto) {
-            mMottoString = motto;
-            mMotto.setText(motto);
+        public MainAdapter(FragmentManager fm, Context context) {
+            super(fm);
+            this.context = context;
         }
 
         @Override
-        public void onClick(View view) {
-
+        public int getCount() {
+            return fragments.length;
         }
 
-//        @Override
-//        public void onClick(View view) {
-//            Intent viewInfo = new Intent(view.getContext(), InfoActivity.class);
-//            viewInfo.putExtra(InfoActivity.EXTRA_NAME, mNameString)
-//                    .putExtra(InfoActivity.EXTRA_PARTY, mPartyString)
-//                    .putExtra(InfoActivity.EXTRA_MOTTO, mMottoString);
-//            view.getContext().startActivity(viewInfo);
-//        }
+        @Override
+        public Fragment getItem(int position) {
+            return fragments[position];
+        }
+
     }
 }
