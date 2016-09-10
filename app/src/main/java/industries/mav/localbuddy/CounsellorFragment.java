@@ -22,14 +22,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.InputStream;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.List;
 
 /**
  * Created by Andrew on 9/10/16.
  */
-public class CounsellorFragment extends Fragment
-{
+public class CounsellorFragment extends Fragment {
     private static final String TAG = "CounsellorFragment";
     private RecyclerView mRecyclerView;
 
@@ -68,6 +68,7 @@ public class CounsellorFragment extends Fragment
                     @Override
                     protected void populateViewHolder(final TestViewHolder viewHolder, Counsellor model, int position) {
                         Log.d(TAG, "MAV --> Populating viewholder");
+                        viewHolder.setModel(model);
                         viewHolder.setName(model.getMemberFullName());
                         viewHolder.setParty(model.getPartyAbbreviation());
                         viewHolder.setMotto(model.getConstituencyName());
@@ -75,12 +76,11 @@ public class CounsellorFragment extends Fragment
                         model.setHandle(twitterHandle(model.getMemberLastName(), model.getMemberFirstName()));
 
                         final Drawable[] icon = {null};
-                        GetImage getImage = new GetImage(){
+                        GetImage getImage = new GetImage() {
                             @Override
                             protected void onPostExecute(Drawable drawable) {
                                 icon[0] = drawable;
                                 Log.d(TAG, "AAC --> icon:" + icon[0]);
-
                                 viewHolder.setImageView(icon[0]);
                             }
                         };
@@ -88,8 +88,7 @@ public class CounsellorFragment extends Fragment
                     }
 
 
-                     class GetImage extends AsyncTask<String, Void, Drawable>
-                     {
+                    class GetImage extends AsyncTask<String, Void, Drawable> {
                         @Override
                         protected Drawable doInBackground(String... strings) {
                             Log.d(TAG, "MAV ANDREW ITS MAV --> url: " + strings[0]);
@@ -114,7 +113,8 @@ public class CounsellorFragment extends Fragment
 
     public static class TestViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-//        private ImageView mImageView;
+        //        private ImageView mImageView;
+        private Counsellor counsellor;
         private TextView mName, mParty, mMotto;
         private String mNameString, mPartyString, mMottoString;
         private de.hdodenhof.circleimageview.CircleImageView mImageView;
@@ -147,6 +147,10 @@ public class CounsellorFragment extends Fragment
             mMotto.setText(motto);
         }
 
+        public void setModel(Counsellor counsellor) {
+            this.counsellor = counsellor;
+        }
+
         @Override
         public void onClick(View view) {
 
@@ -156,6 +160,7 @@ public class CounsellorFragment extends Fragment
 //            viewInfo.putExtra(InfoActivity.EXTRA_NAME, mNameString)
 //                    .putExtra(InfoActivity.EXTRA_PARTY, mPartyString)
 //                    .putExtra(InfoActivity.EXTRA_MOTTO, mMottoString);
+
         }
 
     }
