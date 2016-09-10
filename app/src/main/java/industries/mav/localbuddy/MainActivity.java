@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     protected void populateViewHolder(TestViewHolder viewHolder, Counsellor model, int position) {
                         Log.d(TAG, "AAC --> Populating viewholder");
-                        viewHolder.setName(model.getMemberName());
+                        viewHolder.setName(model.getMemberFullName());
                         viewHolder.setParty(model.getPartyAbbreviation());
                         viewHolder.setMotto(model.getConstituencyName());
                     }
