@@ -155,7 +155,7 @@ public class CounsellorFragment extends Fragment {
         public void onClick(View view) {
 
             Log.d(TAG, "onClick: ");
-            Intent viewInfo = new Intent(view.getContext(), UsersTimelineActivity.class);
+            Intent viewInfo = new Intent(view.getContext(), InfoActivity.class);
             view.getContext().startActivity(viewInfo);
 //            viewInfo.putExtra(InfoActivity.EXTRA_NAME, mNameString)
 //                    .putExtra(InfoActivity.EXTRA_PARTY, mPartyString)
