@@ -1,5 +1,11 @@
 package industries.mav.localbuddy;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -88,10 +94,37 @@ public class CounsellorFragment extends Fragment {
                             protected void onPostExecute(Drawable drawable) {
                                 icon[0] = drawable;
                                 Log.d(TAG, "AAC --> icon:" + icon[0]);
+//                                Drawable makeMeRound = icon[0];
+//                                BitmapDrawable bitmapDrawable = (BitmapDrawable) makeMeRound;
+//                                Bitmap roundedBitmap = getRoundedShape(bitmapDrawable.getBitmap());
+//                                Drawable iconRound = new BitmapDrawable(getResources(), roundedBitmap);
                                 viewHolder.setImageView(icon[0]);
                             }
                         };
                         getImage.execute(model.getMemberImgUrl());
+                    }
+
+                    public Bitmap getRoundedShape(Bitmap scaleBitmapImage) {
+                        int targetWidth = 50;
+                        int targetHeight = 50;
+                        Bitmap targetBitmap = Bitmap.createBitmap(targetWidth,
+                                targetHeight,Bitmap.Config.ARGB_8888);
+
+                        Canvas canvas = new Canvas(targetBitmap);
+                        Path path = new Path();
+                        path.addCircle(((float) targetWidth - 1) / 2,
+                                ((float) targetHeight - 1) / 2,
+                                (Math.min(((float) targetWidth),
+                                        ((float) targetHeight)) / 2),
+                                Path.Direction.CCW);
+
+                        canvas.clipPath(path);
+                        Bitmap sourceBitmap = scaleBitmapImage;
+                        canvas.drawBitmap(sourceBitmap,
+                                new Rect(0, 0, sourceBitmap.getWidth(),
+                                        sourceBitmap.getHeight()),
+                                new Rect(0, 0, targetWidth, targetHeight), null);
+                        return targetBitmap;
                     }
 
                      class GetImage extends AsyncTask<String, Void, Drawable> {
@@ -123,13 +156,14 @@ public class CounsellorFragment extends Fragment {
 
     public static class TestViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private ImageView mImageView;
+//        private ImageView mImageView;
         private TextView mName, mParty, mMotto;
         private String mNameString, mPartyString, mMottoString;
+        private de.hdodenhof.circleimageview.CircleImageView mImageView;
 
         public TestViewHolder(View itemView) {
             super(itemView);
-            mImageView = (ImageView) itemView.findViewById(R.id.picture);
+            mImageView = (de.hdodenhof.circleimageview.CircleImageView) itemView.findViewById(R.id.picture);
             mName = (TextView) itemView.findViewById(R.id.name);
             mParty = (TextView) itemView.findViewById(R.id.party);
             mMotto = (TextView) itemView.findViewById(R.id.motto);

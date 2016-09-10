@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/LocalBuddy.iml" filepath="$PROJECT_DIR$/LocalBuddy.iml" />
       <module fileurl="file://$PROJECT_DIR$/Team-MAV.iml" filepath="$PROJECT_DIR$/Team-MAV.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
