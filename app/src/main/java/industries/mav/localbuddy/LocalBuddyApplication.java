@@ -10,6 +10,7 @@ import com.firebase.client.Firebase;
 public class LocalBuddyApplication extends Application
 {
     private static FirebaseManager dbManager = new FirebaseManager();
+    private static TwitterManager tweetMan = new TwitterManager();
 
     @Override
     public void onCreate() {
@@ -21,4 +22,7 @@ public class LocalBuddyApplication extends Application
         return  dbManager;
     }
 
+    public static TwitterManager getTweetMan(){
+        return  tweetMan;
+    }
 }
