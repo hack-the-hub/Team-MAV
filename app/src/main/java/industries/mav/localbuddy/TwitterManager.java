@@ -74,6 +74,8 @@ public class TwitterManager
 
                 Log.i("doInBackground", "HttpRespone = " + rp);
                 Log.i("doInBackground", "Response status code -->" + (rp.getStatusLine().getStatusCode()));
+                Log.d("doInBackground", "AAC --> reason: " + rp.getStatusLine().getReasonPhrase()
+            + " Protocol version: " + rp.getStatusLine().getProtocolVersion());
 
                 if(rp.getStatusLine().getStatusCode() == HttpStatus.SC_OK)
                 {
