@@ -142,9 +142,9 @@
             android:textSize="12sp"
             tools:text="North Down" />
         
-        <LinearLayout
-            android:layout_width="ma"
-            android:layout_height=""></LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:layout_width="ma"-->
+            <!--android:layout_height=""></LinearLayout>-->
 
 
     </android.support.v7.widget.LinearLayoutCompat>

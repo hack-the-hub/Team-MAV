@@ -12,6 +12,8 @@ public class Counsellor implements Serializable {
     private String MemberTitle;
     private String ConstituencyName;
     private String PartyName;
+    private String TwitterHandle;
+    private HandlerFinder hFinder = null;
 
     public Counsellor() {}
 
@@ -26,6 +28,7 @@ public class Counsellor implements Serializable {
         this.MemberTitle = MemberTitle;
         this.ConstituencyName = ConstituencyName;
         this.PartyName = PartyName;
+        this.TwitterHandle = twitterHandle();
     }
 
     public void setMemberImageUrl(String MemberImageUrl) { this.MemberImgUrl = MemberImageUrl; }
@@ -42,4 +45,11 @@ public class Counsellor implements Serializable {
     public String getMemberTitle() { return this.MemberTitle; }
     public String getConstituencyName() { return this.ConstituencyName; }
     public String getPartyName() { return this.PartyName; }
+    public String getTwitterHandle() { return this.TwitterHandle; }
+
+    private String twitterHandle()
+    {
+        hFinder = new HandlerFinder();
+        return hFinder.FindHandle(this.MemberLastName, this.MemberFirstName);
+    }
 }
