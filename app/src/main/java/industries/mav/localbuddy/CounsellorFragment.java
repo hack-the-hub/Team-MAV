@@ -1,5 +1,7 @@
 package industries.mav.localbuddy;
 
+
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -69,12 +71,14 @@ public class CounsellorFragment extends Fragment
                             @Override
                             protected void onPostExecute(Drawable drawable) {
                                 icon[0] = drawable;
-                                Log.d(TAG, "MAV ANDREW ITS MAV --> icon:" + icon[0]);
+                                Log.d(TAG, "AAC --> icon:" + icon[0]);
+
                                 viewHolder.setImageView(icon[0]);
                             }
                         };
                         getImage.execute(model.getMemberImgUrl());
                     }
+
 
                      class GetImage extends AsyncTask<String, Void, Drawable>
                      {
@@ -102,13 +106,14 @@ public class CounsellorFragment extends Fragment
 
     public static class TestViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private ImageView mImageView;
+//        private ImageView mImageView;
         private TextView mName, mParty, mMotto;
         private String mNameString, mPartyString, mMottoString;
+        private de.hdodenhof.circleimageview.CircleImageView mImageView;
 
         public TestViewHolder(View itemView) {
             super(itemView);
-            mImageView = (ImageView) itemView.findViewById(R.id.picture);
+            mImageView = (de.hdodenhof.circleimageview.CircleImageView) itemView.findViewById(R.id.picture);
             mName = (TextView) itemView.findViewById(R.id.name);
             mParty = (TextView) itemView.findViewById(R.id.party);
             mMotto = (TextView) itemView.findViewById(R.id.motto);
@@ -136,17 +141,12 @@ public class CounsellorFragment extends Fragment
 
         @Override
         public void onClick(View view) {
-
-        }
-
-//        @Override
-//        public void onClick(View view) {
-//            Intent viewInfo = new Intent(view.getContext(), InfoActivity.class);
+            Intent viewInfo = new Intent(view.getContext(), UsersTimelineActivity.class);
+            view.getContext().startActivity(viewInfo);
 //            viewInfo.putExtra(InfoActivity.EXTRA_NAME, mNameString)
 //                    .putExtra(InfoActivity.EXTRA_PARTY, mPartyString)
 //                    .putExtra(InfoActivity.EXTRA_MOTTO, mMottoString);
-//            view.getContext().startActivity(viewInfo);
-//        }
+        }
 
     }
 }

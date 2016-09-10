@@ -9,9 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 
-import com.twitter.sdk.android.tweetui.UserTimeline;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -20,25 +18,22 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = "MainActivity";
 
     //Views
-    private Toolbar mToolbar;
+//    private Toolbar mToolbar;
     private TabLayout mTabLayout;
     private ViewPager mPager;
 
-    private int[] imageResIds = new int[]{
-            android.support.design.R.drawable.abc_ic_go_search_api_material,
-            android.support.design.R.drawable.abc_ic_go_search_api_material,
-            android.support.design.R.drawable.abc_ic_go_search_api_material
-    };
+    private int[] imageResIds = new int[]{R.drawable.newsicon,
+            R.drawable.councilloricon,
+            R.drawable.mapicon};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Fabric.with(this, LocalBuddyApplication.getTweetMan().getKits());
 
-        this.getTweetManStuff();
-
-        setSupportActionBar(mToolbar);
         mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
         mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -62,7 +57,6 @@ public class MainActivity extends AppCompatActivity
     protected void onStart() {
         super.onStart();
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mPager = (ViewPager) findViewById(R.id.pager);
 
         MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager(), this);
@@ -97,11 +91,5 @@ public class MainActivity extends AppCompatActivity
             return fragments[position];
         }
 
-    }
-
-    public void getTweetManStuff()
-    {
-        UserTimeline userTimeline = new UserTimeline.Builder().screenName("fabric").build();
-        Log.i("VINCE", "User timeline = " + userTimeline);
     }
 }
