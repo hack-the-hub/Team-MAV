@@ -8,6 +8,7 @@ public class Counsellor
     public String PartyAbbreviation;
     public String MemberTitle;
     public String ConstituencyName;
+    public String Address;
 
     public Counsellor(String MemberName, String MemberImageUrl, String party, String title, String constituency)
     {
@@ -23,10 +24,12 @@ public class Counsellor
     public void setPartyAbbreviation(String party) { this.PartyAbbreviation = party; }
     public void setMemberTitle(String title) { this.MemberTitle = title; }
     public void setConstituencyName(String constituency) { this.ConstituencyName = constituency; }
+    public void setAddress (String address) { this.Address = address; }
 
     public String getMemberName() { return this.MemberName; }
     public String getMemberImageUrl() { return this.MemberImageUrl; }
     public String getPartyAbbreviation() { return this.PartyAbbreviation; }
     public String getMemberTitle() { return this.MemberTitle; }
     public String getConstituencyName() { return this.ConstituencyName; }
+    public String getAddress() { return this.Address; }
 }
