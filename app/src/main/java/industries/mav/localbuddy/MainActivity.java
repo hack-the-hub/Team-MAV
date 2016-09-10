@@ -31,13 +31,13 @@ public class MainActivity extends AppCompatActivity
 
 
     //Views
-    private Toolbar mToolbar;
+//    private Toolbar mToolbar;
     private TabLayout mTabLayout;
     private ViewPager mPager;
 
-    private int[] imageResIds = new int[]{android.support.design.R.drawable.abc_ic_go_search_api_material,
-            android.support.design.R.drawable.abc_ic_go_search_api_material,
-            android.support.design.R.drawable.abc_ic_go_search_api_material};
+    private int[] imageResIds = new int[]{R.drawable.newsicon,
+            R.drawable.councilloricon,
+            R.drawable.mapicon};
 
     //Firebase
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setSupportActionBar(mToolbar);
 
         mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity
 //        mRecyclerView.setHasFixedSize(true);
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+//        mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
         mPager = (ViewPager) findViewById(R.id.pager);
 

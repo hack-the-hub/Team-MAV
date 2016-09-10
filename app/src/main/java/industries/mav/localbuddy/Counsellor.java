@@ -33,7 +33,7 @@ public class Counsellor
     public String getMemberLastName() { return this.MemberLastName; }
     public String getMemberFullName() { return this.getMemberFirstName() + " " + this.getMemberLastName(); }
     public String getMemberImgUrl() { return this.MemberImgUrl; }
-    public String getPartyAbbreviation() { return this.PartyAbbreviation; }
+    public String getPartyAbbreviation() { return this.PartyAbbreviation.toUpperCase(); }
     public String getMemberTitle() { return this.MemberTitle; }
     public String getConstituencyName() { return this.ConstituencyName; }
 }
