@@ -10,9 +10,15 @@ import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 
 import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterApiClient;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.models.Coordinates;
 import com.twitter.sdk.android.core.models.Tweet;
+import com.twitter.sdk.android.core.services.StatusesService;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -27,6 +33,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import io.fabric.sdk.android.Kit;
+import retrofit2.Call;
 
 public class TwitterManager
 {
@@ -44,6 +51,26 @@ public class TwitterManager
             return new Twitter(this.authConfig);
         else
             return null;
+    }
+
+    public void testTwitterAPI()
+    {
+        TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient();
+        // Can also use Twitter directly: Twitter.getApiClient()
+        StatusesService statusesService = twitterApiClient.getStatusesService();
+        Call<Tweet> call = statusesService.show(524971209851543553L, null, null, null);
+        call.enqueue(new Callback<Tweet>() {
+            @Override
+            public void success(Result<Tweet> result) {
+                //Do something with result
+                Log.i("Test Twitter Success", "The tweet result is --> " + result);
+            }
+
+            public void failure(TwitterException exception) {
+                //Do something on failure
+                Log.i("Test Twitter Fail", "God damn it");
+            }
+        });
     }
 
     public void loadJSONTweets() {
@@ -69,7 +96,7 @@ public class TwitterManager
             try
             {
                 HttpClient hc = new DefaultHttpClient();
-                HttpGet get = new HttpGet("https://api.twitter.com/1.1/statuses/user_timeline.json");
+                HttpGet get = new HttpGet("http://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=_andrewaac&count=3");
                 HttpResponse rp = hc.execute(get);
 
                 Log.i("doInBackground", "HttpRespone = " + rp);
