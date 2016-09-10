@@ -9,9 +9,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-
-import com.twitter.sdk.android.tweetui.UserTimeline;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -35,8 +32,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Fabric.with(this, LocalBuddyApplication.getTweetMan().getKits());
-
-        this.getTweetManStuff();
 
         setSupportActionBar(mToolbar);
         mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
@@ -97,11 +92,5 @@ public class MainActivity extends AppCompatActivity
             return fragments[position];
         }
 
-    }
-
-    public void getTweetManStuff()
-    {
-        UserTimeline userTimeline = new UserTimeline.Builder().screenName("fabric").build();
-        Log.i("VINCE", "User timeline = " + userTimeline);
     }
 }

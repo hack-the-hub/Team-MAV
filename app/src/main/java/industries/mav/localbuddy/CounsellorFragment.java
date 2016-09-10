@@ -1,5 +1,6 @@
 package industries.mav.localbuddy;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -136,17 +137,12 @@ public class CounsellorFragment extends Fragment
 
         @Override
         public void onClick(View view) {
-
-        }
-
-//        @Override
-//        public void onClick(View view) {
-//            Intent viewInfo = new Intent(view.getContext(), InfoActivity.class);
+            Intent viewInfo = new Intent(view.getContext(), UsersTimelineActivity.class);
+            view.getContext().startActivity(viewInfo);
 //            viewInfo.putExtra(InfoActivity.EXTRA_NAME, mNameString)
 //                    .putExtra(InfoActivity.EXTRA_PARTY, mPartyString)
 //                    .putExtra(InfoActivity.EXTRA_MOTTO, mMottoString);
-//            view.getContext().startActivity(viewInfo);
-//        }
+        }
 
     }
 }
