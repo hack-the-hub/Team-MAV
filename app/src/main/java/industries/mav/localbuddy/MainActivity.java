@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity
 {
     private static final String TAG = "MainActivity";
     private final TypeReference<Map<String, String>> type = new TypeReference<Map<String, String>>() {};
-    private FirebaseManager dbManager = new FirebaseManager();
 
     //Views
     private RecyclerView mRecyclerView;
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity
                         Counsellor.class,
                         R.layout.card_counsellor,
                         TestViewHolder.class,
-                        dbManager.dataBase
+                        LocalBuddyApplication.getDbManager().dataBase
                 ) {
 
                     @Override
